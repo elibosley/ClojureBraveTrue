@@ -164,3 +164,36 @@
   "take a month and returns anything falling after that month"
   [mth ary]
   (drop-while #(<= (:month %) mth) ary))
+
+;; "some" returns the first item evaluating to truthy
+
+(defn any-critter-greater?
+  "takes in a number and a list, returns if a critter value is greater than the number or nil"
+  [number ary]
+  (some #(> (:critter %) number) ary))
+
+(defn get-critter-greater
+  "takes in a num and a list and returns the first item greater than the number"
+  [number ary]
+  (some #(and (> (:critter %) number) %) ary))
+
+;; sort is straightforward, sorts ascending
+;; sort-by takes in a key-function to sort using a vlaue
+
+(defn sort-by-key
+  "sorts the food-journal by the given key as a string"
+  [food-journal key]
+  (sort-by (keyword key) food-journal))
+
+;; into lets you put the output of many functions back into their original data structure rather
+;; than a seq
+
+(def vampire-reactions
+  {:sunlight-reaction "Glitter!"})
+
+(defn into-example
+"identity returns its argument - this is a super simple example of let"
+  [input]
+  (let [x (map identity input)]
+    (println (map identity input))
+    (println (into {} x))))
