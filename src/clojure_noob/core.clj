@@ -197,3 +197,14 @@
   (let [x (map identity input)]
     (println (map identity input))
     (println (into {} x))))
+
+;; apply explodes data type so that 'nother function will work with it
+
+(defn apply-example
+  [input]
+  (apply max input))
+
+;; partial takes function and args  - returns a new function that uses the previous args
+;; and any new args - perfect way to write min-9
+(def add10 (partial + 10))
+(add10 3)
